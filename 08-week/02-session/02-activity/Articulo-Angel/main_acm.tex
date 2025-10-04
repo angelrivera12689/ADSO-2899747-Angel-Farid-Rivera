@@ -1,0 +1,45 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\input{includes/preamble_common}
+\input{includes/preamble_acm}
+
+\AtBeginDocument{\providecommand\BibTeX{{\sc Bib}\TeX}}
+
+\title[TuEvento: Caso de Estudio MVC]{TuEvento: Evaluación Empírica de la Arquitectura Model-View-Controller en Sistemas de Gestión de Eventos}
+
+\author{Angel Farid Rivera Suarez}
+\affiliation{%
+  \institution{SENA}
+  \city{Neiva}
+  \country{Colombia}
+  ORCID: https://orcid.org/0009-0008-7560-7196}
+\email{angelfaridr1@gmail.com}
+
+\author{Jesús Ariel González Bonilla}
+\affiliation{%
+  \institution{SENA}
+  \city{Neiva}
+  \country{Colombia}}
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\keywords{Model-View-Controller, Arquitectura MVC, Desarrollo Web, Calidad de Código, Métricas de Software}
+
+\begin{document}
+\maketitle
+
+\input{sections/01_introduccion}
+\input{sections/02_relacionados}
+\input{sections/03_metodologia}
+\input{sections/04_implementacion}
+\input{sections/05_resultados}
+\input{sections/06_discusion}
+\input{sections/07_conclusiones}
+\input{sections/A1_apendices}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography/references}
+
+\end{document}
