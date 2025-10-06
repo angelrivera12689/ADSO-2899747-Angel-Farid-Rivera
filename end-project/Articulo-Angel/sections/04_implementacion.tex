@@ -1,0 +1,110 @@
+\section{Implementación}
+
+TuEvento es una plataforma completa de gestión de eventos que permite a usuarios finales descubrir y asistir a eventos, mientras que organizadores pueden crear y gestionar sus eventos. El sistema incluye funcionalidades de autenticación, perfiles de usuario, búsqueda de eventos, compra de boletos, calificaciones y notificaciones.
+
+\subsection{Arquitectura General}
+La arquitectura sigue el patrón MVC estándar, con separación clara entre las capas:
+\begin{itemize}
+\item \textbf{Model}: Gestiona datos y lógica de negocio (entidades JPA, repositorios, servicios).
+\item \textbf{View}: Presenta la interfaz de usuario (páginas web en React, pantallas móviles en React Native).
+\item \textbf{Controller}: Maneja solicitudes HTTP y coordina entre Model y View.
+\end{itemize}
+
+El sistema consta de tres componentes principales:
+\begin{enumerate}
+\item \textbf{Backend (Spring Boot)}: API REST que expone endpoints para todas las operaciones.
+\item \textbf{Frontend Web (React)}: Interfaz web responsiva para usuarios de escritorio.
+\item \textbf{Frontend Móvil (Expo/React Native)}: Aplicación móvil nativa.
+\end{enumerate}
+
+\subsection{Backend: Spring Boot}
+El backend está desarrollado con Spring Boot 3.3.4, utilizando Java 17. Las dependencias principales incluyen:
+\begin{itemize}
+\item Spring Data JPA para persistencia.
+\item Spring Security con JWT para autenticación.
+\item Spring Mail para envío de emails.
+\item AWS SDK S3 para almacenamiento de archivos.
+\item Apache POI para procesamiento de Excel.
+\end{itemize}
+
+\subsubsection{Modelo de Datos}
+El modelo de datos incluye las siguientes entidades principales:
+\begin{itemize}
+\item \textbf{User}: Información de usuarios con roles (ADMIN, USER), direcciones y estado.
+\item \textbf{Event}: Eventos con organizador, ubicación, fechas y categorías.
+\item \textbf{Ticket}: Boletos asociados a usuarios y eventos.
+\item \textbf{Seat/Section}: Asientos organizados en secciones con precios.
+\item \textbf{EventRating}: Calificaciones y comentarios de usuarios.
+\item \textbf{Notification}: Sistema de notificaciones por evento.
+\end{itemize}
+
+\subsubsection{Capa de Controladores}
+Los controladores REST implementan endpoints para:
+\begin{itemize}
+\item Gestión de usuarios (registro, login, perfiles).
+\item CRUD de eventos.
+\item Compra y gestión de boletos.
+\item Calificaciones y reseñas.
+\item Administración (gestionar usuarios, peticiones de organizadores).
+\end{itemize}
+
+\subsubsection{Capa de Servicios}
+Los servicios contienen la lógica de negocio, incluyendo:
+\begin{itemize}
+\item Validación de datos.
+\item Procesamiento de pagos (simulado).
+\item Envío de notificaciones.
+\item Generación de códigos QR para boletos.
+\end{itemize}
+
+\subsection{Frontend Web: React}
+El frontend web utiliza React 19 con Vite como bundler. Las tecnologías incluyen:
+\begin{itemize}
+\item React Router para navegación.
+\item Tailwind CSS para estilos.
+\item Framer Motion para animaciones.
+\item Axios para llamadas API.
+\end{itemize}
+
+\subsubsection{Estructura de Componentes}
+\begin{itemize}
+\item \textbf{Páginas principales}: Landing page, lista de eventos, detalles de evento, perfil de usuario.
+\item \textbf{Componentes reutilizables}: Botones, inputs, tarjetas de evento.
+\item \textbf{Hooks personalizados}: Para gestión de estado y llamadas API.
+\end{itemize}
+
+\subsubsection{Flujo de Usuario}
+\begin{enumerate}
+\item Usuario se registra/verifica email.
+\item Explora eventos por categoría o ubicación.
+\item Selecciona evento y compra boletos.
+\item Recibe confirmación y código QR.
+\item Puede calificar el evento después de asistir.
+\end{enumerate}
+
+\subsection{Frontend Móvil: Expo/React Native}
+La aplicación móvil utiliza Expo SDK con React Native. Incluye:
+\begin{itemize}
+\item React Navigation para navegación (stack y tabs).
+\item NativeWind para estilos consistentes.
+\item Expo Camera para escaneo QR.
+\item AsyncStorage para persistencia local.
+\end{itemize}
+
+\subsubsection{Pantallas Principales}
+\begin{itemize}
+\item \textbf{Auth}: Login, registro, verificación.
+\item \textbf{Eventos}: Lista, búsqueda, detalles.
+\item \textbf{Perfil}: Información personal, tickets.
+\item \textbf{QR Scanner}: Para validar boletos.
+\end{itemize}
+
+\subsection{Integración y Despliegue}
+\begin{itemize}
+\item \textbf{Base de datos}: PostgreSQL para datos relacionales.
+\item \textbf{Almacenamiento}: AWS S3 para imágenes de eventos.
+\item \textbf{Email}: Gmail SMTP para notificaciones.
+\item \textbf{Despliegue}: Docker Compose para desarrollo local.
+\end{itemize}
+
+El sistema demuestra cómo MVC facilita el desarrollo paralelo de equipos especializados en backend, frontend web y móvil, manteniendo consistencia en la arquitectura y APIs.

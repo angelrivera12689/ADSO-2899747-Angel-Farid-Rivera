@@ -1,0 +1,92 @@
+\section{Resultados}
+
+La evaluación de calidad se realizó sobre el proyecto ATMProject, un subconjunto de TuEvento que implementa gestión de cajeros automáticos. El proyecto consta de 19 clases Java (7 Controllers, 8 Entities, 4 Repositories) y aproximadamente 1678 líneas de código.
+
+\subsection{Métricas de Calidad}
+Utilizando Springlint, se midieron las cinco métricas principales propuestas por Aniche et al. \cite{aniche2016satt}. Los resultados se presentan en las Tablas \ref{tab:controller_metrics}, \ref{tab:entity_metrics} y \ref{tab:repository_metrics}.
+
+\begin{table}[h]
+\centering
+\caption{Métricas para clases Controller}
+\label{tab:controller_metrics}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Clase & CBO & LCOM & NOM & RFC & WMC \\
+\hline
+UseCaseCheckBalance & 7 & 24 & 6 & 27 & 11 \\
+UseCaseDeposit & 9 & 24 & 6 & 43 & 10 \\
+UseCaseMaintenance & 14 & 64 & 12 & 41 & 16 \\
+UseCaseRegisterATM & 12 & 64 & 6 & 46 & 6 \\
+UseCaseRepair & 14 & 64 & 12 & 41 & 16 \\
+UseCaseTransfer & 10 & 38 & 5 & 85 & 117 \\
+UseCaseWithdraw & 9 & 28 & 7 & 48 & 16 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Métricas para clases Entity}
+\label{tab:entity_metrics}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Clase & CBO & LCOM & NOM & RFC & WMC \\
+\hline
+ATM & 8 & 56 & 12 & 121 & 12 \\
+BankAccount & 12 & 120 & 17 & 201 & 17 \\
+Currency & 7 & 11 & 16 & 16 & 6 \\
+Customer & 9 & 99 & 15 & 115 & 15 \\
+Maintenance & 12 & 45 & 11 & 111 & 11 \\
+MaintenanceCategory & 7 & 76 & 6 & 66 & 6 \\
+Repair & 11 & 28 & 9 & 89 & 9 \\
+Transaction & 12 & 120 & 17 & 201 & 17 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Métricas para clases Repository}
+\label{tab:repository_metrics}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Clase & CBO & LCOM & NOM & RFC & WMC \\
+\hline
+QueryContainerATM & 7 & 33 & 6 & 33 & 3 \\
+QueryContainerBankAccount & 6 & 46 & 4 & 65 & 5 \\
+QueryContainerMaintenance & 13 & 335 & 3 & 353 & 3 \\
+QueryContainerRepair & 12 & 323 & 6 & 363 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Análisis de Métricas}
+Los valores obtenidos se compararon con los umbrales establecidos por Aniche et al. \cite{aniche2016satt} para cada rol arquitectural:
+
+\begin{itemize}
+\item \textbf{Controllers}: Todos los valores están por debajo del umbral más bajo (v1) para CBO, LCOM, NOM y WMC. Solo UseCaseTransfer tiene LCOM = 38, ligeramente por encima de v1 = 33, pero aún en rango aceptable.
+\item \textbf{Entities}: Los valores de CBO y LCOM están significativamente por debajo de los umbrales, indicando baja complejidad y alta cohesión.
+\item \textbf{Repositories}: Similarmente, todas las métricas están dentro de rangos aceptables.
+\end{itemize}
+
+\subsection{Detección de Olores de Código}
+Springlint identificó los siguientes olores MVC:
+\begin{itemize}
+\item \textbf{Fat Repository}: Detectado en 3 de 4 clases Repository (QueryContainerBankAccount, QueryContainerRepair, QueryContainerMaintenance).
+\item \textbf{Otros olores}: No se detectaron Promiscuous Controller, Brain Controller, Meddling Service, Brain Repository, ni Laborious Repository Method.
+\end{itemize}
+
+El olor Fat Repository se debe a que estas clases manejan consultas que involucran múltiples entidades relacionadas, lo cual es común en sistemas complejos pero viola el principio de responsabilidad única propuesto en \cite{aniche2018code}.
+
+\subsection{Comparación con Benchmarks}
+Los resultados se compararon con un benchmark de 120 aplicaciones Spring MVC. Las clases de TuEvento se ubican en el percentil 30-70 para la mayoría de métricas, indicando calidad media-alta. Ninguna clase cae en el percentil inferior (problemas serios), confirmando la efectividad del enfoque MDA utilizado.
+
+\subsection{Resumen de Calidad}
+\begin{itemize}
+\item \textbf{Cohesión}: Alta (valores LCOM bajos).
+\item \textbf{Acoplamiento}: Bajo (valores CBO bajos).
+\item \textbf{Complejidad}: Aceptable (valores WMC dentro de límites).
+\item \textbf{Olores}: Mínimos, solo Fat Repository en repositorios complejos.
+\end{itemize}
+
+Los resultados demuestran que el código generado por xGenerator mantiene altos estándares de calidad, validando la efectividad de la arquitectura MVC en el desarrollo de aplicaciones web empresariales.

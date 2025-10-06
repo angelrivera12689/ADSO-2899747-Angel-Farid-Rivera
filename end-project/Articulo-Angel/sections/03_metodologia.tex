@@ -1,0 +1,36 @@
+\section{Metodología}
+
+Este estudio sigue un enfoque de investigación aplicada, combinando desarrollo de software con evaluación empírica de calidad. La metodología se basa en el proceso de desarrollo de software descrito en \cite{paolone2020automatic}, que integra modelado MDA con generación automática de código.
+
+\subsection{Proceso de Desarrollo}
+El desarrollo de TuEvento siguió estos pasos:
+\begin{enumerate}
+\item \textbf{Modelado CIM}: Se identificaron los conceptos del dominio (Usuario, Evento, Boleto, etc.) y las reglas de negocio mediante diagramas UML de casos de uso y clases.
+\item \textbf{Transformación PIM}: Los modelos CIM se transformaron a modelos independientes de plataforma, definiendo la arquitectura MVC.
+\item \textbf{Generación PSM}: Se generó el código Java para las tres capas MVC utilizando xGenerator, una herramienta propietaria basada en MDA.
+\item \textbf{Implementación}: Se completó el código generado con lógica específica de negocio y se integraron los frontends.
+\end{enumerate}
+
+\subsection{Evaluación de Calidad}
+La calidad del código se evaluó utilizando Springlint, una herramienta basada en las propuestas de Aniche et al. \cite{aniche2016satt, aniche2018code}. Se midieron:
+\begin{itemize}
+\item \textbf{Métricas de Chidamber-Kemerer}: CBO, LCOM, NOM, RFC, WMC, adaptadas al contexto MVC.
+\item \textbf{Olores de código MVC}: Los seis olores identificados en \cite{aniche2018code}.
+\end{itemize}
+
+Los umbrales utilizados se basan en el estudio de Aniche et al. \cite{aniche2016satt}, que establece valores específicos para cada rol arquitectural (Controller, Entity, Repository, Service).
+
+\subsection{Análisis de Resultados}
+Los datos recolectados incluyen:
+\begin{itemize}
+\item Valores de métricas para 19 clases Java (7 Controllers, 8 Entities, 4 Repositories).
+\item Presencia/ausencia de olores de código.
+\item Comparación con benchmarks de aplicaciones Spring MVC.
+\end{itemize}
+
+La validez del estudio se asegura mediante:
+\begin{itemize}
+\item Uso de herramientas estándar y replicables (Springlint).
+\item Comparación con literatura establecida.
+\item Análisis de amenazas a la validez constructiva, interna, externa y de conclusión.
+\end{itemize}

@@ -1,0 +1,37 @@
+\section{Conclusiones}
+
+Este artículo ha presentado TuEvento, una plataforma completa de gestión de eventos desarrollada siguiendo la arquitectura Model-View-Controller, y ha evaluado empíricamente la calidad del código generado. Los resultados demuestran que MVC, cuando implementado con enfoques modernos como Model Driven Architecture, produce aplicaciones web de alta calidad con bajos niveles de acoplamiento y alta cohesión.
+
+\subsection{Principales Contribuciones}
+\begin{enumerate}
+\item \textbf{Implementación Completa de MVC}: TuEvento integra backend Spring Boot, frontend React web y Expo/React Native móvil, demostrando la versatilidad de MVC en stacks tecnológicos modernos.
+\item \textbf{Evaluación Empírica de Calidad}: Utilizando métricas específicas para MVC \cite{aniche2016satt} y catálogo de olores \cite{aniche2018code}, se confirmó la alta calidad del código generado.
+\item \textbf{Validación de MDA}: El uso de xGenerator para generación automática de código asegura consistencia arquitectural y reduce defectos, validando los beneficios de MDA en desarrollo de software aplicado.
+\end{enumerate}
+
+\subsection{Lecciones Aprendidas}
+\begin{itemize}
+\item \textbf{Separación de Responsabilidades}: MVC facilita el desarrollo paralelo y mantenimiento, pero requiere disciplina para mantener límites claros entre capas.
+\item \textbf{Métricas Contextuales}: Los umbrales de métricas deben adaptarse al rol arquitectural específico, no aplicarse uniformemente.
+\item \textbf{Trade-offs en Diseño}: En sistemas complejos, algunos "olores" como Fat Repository pueden ser aceptables si mejoran la funcionalidad y mantenibilidad general.
+\item \textbf{Generación de Código}: MDA acelera el desarrollo y mejora la calidad, pero requiere expertise en modelado UML.
+\end{itemize}
+
+\subsection{Implicaciones para la Industria}
+TuEvento demuestra que MVC sigue siendo relevante en el desarrollo de aplicaciones web empresariales. Las organizaciones pueden beneficiarse adoptando:
+\begin{itemize}
+\item Arquitecturas MVC bien estructuradas para sistemas complejos.
+\item Herramientas de generación de código para mejorar consistencia.
+\item Métricas y análisis de olores para mantenimiento continuo.
+\end{itemize}
+
+\subsection{Limitaciones y Trabajo Futuro}
+Aunque los resultados son prometedores, el estudio se limita a un caso específico. Futuras investigaciones podrían:
+\begin{itemize}
+\item Evaluar TuEvento en entornos de producción reales.
+\item Comparar con arquitecturas emergentes como microservicios.
+\item Investigar la integración de MVC con tecnologías de IA.
+\item Desarrollar herramientas automatizadas para refactorización de olores MVC.
+\end{itemize}
+
+En resumen, TuEvento valida la efectividad de MVC en el desarrollo moderno de software, contribuyendo a la literatura con evidencia empírica de sus beneficios en calidad y mantenibilidad. El proyecto sirve como caso de estudio para educadores y profesionales en ingeniería de software aplicada.

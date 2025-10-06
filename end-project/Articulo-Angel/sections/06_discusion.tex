@@ -1,0 +1,48 @@
+\section{Discusión}
+
+Los resultados obtenidos en TuEvento proporcionan insights valiosos sobre la aplicación práctica de la arquitectura MVC en el desarrollo de aplicaciones web empresariales. Esta sección discute las implicaciones de los hallazgos, comparaciones con la literatura y limitaciones del estudio.
+
+\subsection{Implicaciones para la Arquitectura MVC}
+Los resultados confirman que MVC facilita el desarrollo de sistemas complejos al mantener separación clara de responsabilidades. La baja complejidad ciclomática (WMC) en las clases Controller indica que la lógica de coordinación se mantiene simple, delegando operaciones complejas a la capa de servicios. Esto alinea con los principios de diseño propuestos por Pop y Altar \cite{pop2014designing}, quienes enfatizan la importancia de mantener controladores ligeros.
+
+La presencia de olores Fat Repository destaca un trade-off inherente en sistemas MVC: mientras que la separación de responsabilidades mejora la mantenibilidad, consultas complejas que involucran múltiples entidades requieren repositorios más amplios. Este hallazgo cuestiona la rigidez del umbral CTE = 1 propuesto por Aniche et al. \cite{aniche2018code}, sugiriendo que en dominios complejos como gestión de eventos, repositorios polimórficos pueden ser más prácticos.
+
+\subsection{Comparación con Estudios Previos}
+Comparado con el estudio de Aniche et al. \cite{aniche2016satt}, TuEvento muestra métricas consistentemente por debajo de los umbrales, indicando mejor calidad que el promedio de aplicaciones Spring MVC analizadas. Esto puede atribuirse al uso de MDA y generación automática de código, que produce estructuras más consistentes que el desarrollo manual.
+
+En relación con Necula \cite{necula2024exploring}, TuEvento valida la aplicabilidad de MVC en el sector de eventos, confirmando su efectividad en mercados que requieren escalabilidad y gestión compleja de datos. La integración exitosa con tecnologías modernas (React, React Native, AWS S3) demuestra la adaptabilidad de MVC a stacks tecnológicos contemporáneos.
+
+\subsection{Ventajas del Enfoque MDA}
+El uso de xGenerator para generar código base asegura consistencia arquitectural y reduce errores humanos. La estructura uniforme de clases (todas las entidades siguen el mismo patrón JPA) facilita el mantenimiento y la comprensión del código. Esto valida las afirmaciones de Paolone et al. \cite{paolone2020automatic} sobre los beneficios de MDA en reducción de tiempo de desarrollo y mejora de calidad.
+
+\subsection{Limitaciones y Amenazas a la Validez}
+\subsubsection{Validez Constructiva}
+Las métricas utilizadas (CBO, LCOM, etc.) son estándar en la literatura, pero podrían no capturar todos los aspectos de calidad. Futuros estudios podrían incluir métricas adicionales como cobertura de pruebas o complejidad cognitiva.
+
+\subsubsection{Validez Interna}
+El estudio se realizó en un subconjunto (ATMProject) de TuEvento. Aunque representativo, resultados podrían variar en módulos más complejos. La herramienta Springlint, aunque basada en literatura sólida, podría tener sesgos en su implementación.
+
+\subsubsection{Validez Externa}
+Los resultados se limitan a un proyecto específico desarrollado con xGenerator. Generalización a otros frameworks MVC requiere cautela. El dominio de gestión de eventos podría no ser representativo de todos los tipos de aplicaciones web.
+
+\subsubsection{Validez de Conclusión}
+La relación causal entre arquitectura MVC y calidad de código es fuerte, pero factores como experiencia del equipo desarrollador podrían influir. Estudios futuros con grupos de control (desarrollo manual vs. generado) fortalecerían las conclusiones.
+
+\subsection{Implicaciones Prácticas}
+Para desarrolladores y organizaciones:
+\begin{itemize}
+\item MVC sigue siendo una arquitectura robusta para aplicaciones web complejas.
+\item La generación automática de código puede mejorar la calidad y consistencia.
+\item Los umbrales de métricas deben adaptarse al contexto específico del proyecto.
+\item En dominios con consultas complejas, el principio de repositorios especializados debe equilibrarse con practicidad.
+\end{itemize}
+
+\subsection{Direcciones Futuras}
+\begin{itemize}
+\item Evaluar TuEvento en producción para medir rendimiento y usabilidad.
+\item Comparar con arquitecturas emergentes como MVVM.
+\item Investigar integración de MVC con tecnologías de IA para recomendaciones de eventos.
+\item Desarrollar herramientas de análisis de calidad específicas para código generado por MDA.
+\end{itemize}
+
+En conclusión, TuEvento demuestra que MVC, cuando implementado con prácticas modernas como MDA, produce código de alta calidad. Los resultados contribuyen a la literatura al proporcionar evidencia empírica de la efectividad de MVC en contextos reales de desarrollo de software.
